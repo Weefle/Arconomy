@@ -1,0 +1,9 @@
+name: Arconomy
+version: ${project.version}
+main: fr.weefle.Arconomy
+authors: [Weefle]
+description: Official economy plugin for Arcania network
+commands:
+  arconomy:
+    description: Main Arconomy Command
+    usage: /arconomy
