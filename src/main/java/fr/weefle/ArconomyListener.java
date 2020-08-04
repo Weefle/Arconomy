@@ -17,7 +17,7 @@ public class ArconomyListener implements Listener {
 
         Player pl = e.getPlayer();
         if(m.getConfig().get("Players." + pl.getName()) == null) {
-            m.getConfig().set("Players." + pl.getName(), 2000);
+            m.getConfig().set("Players." + pl.getName(), Float.parseFloat("2000"));
             m.saveConfig();
         }
 

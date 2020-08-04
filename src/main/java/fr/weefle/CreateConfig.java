@@ -17,12 +17,13 @@ public class CreateConfig {
 
         if(f.exists()){
 
-            Bukkit.getLogger().info("The configuration's file is already created!");
+            Bukkit.getLogger().info("Le fichier des comptes d'Arconomy a bien été chargé!");
 
         }else{
             m.getConfig().options().copyDefaults(false);
             m.getConfig().createSection("Players");
             m.saveConfig();
+            Bukkit.getLogger().info("Le fichier des comptes d'Arconomy a été correctement ajouté!");
         }
 
     }
