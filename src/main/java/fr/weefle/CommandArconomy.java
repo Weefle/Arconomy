@@ -46,8 +46,8 @@ public class CommandArconomy implements CommandExecutor {
                 if (args.length == 3) {
 
                     Player pl = Bukkit.getPlayer(args[1]);
-                    float moneyToAdd = Float.parseFloat(args[2]);
-                    float money = (float) m.getConfig().get("Players." + pl.getName());
+                    double moneyToAdd = Double.parseDouble(args[2]);
+                    double money = (double) m.getConfig().get("Players." + pl.getName());
                     money += moneyToAdd;
                     m.getConfig().set("Players." + pl.getName(), money);
                     m.saveConfig();
@@ -59,7 +59,7 @@ public class CommandArconomy implements CommandExecutor {
             }else if(args[0].equalsIgnoreCase("get")){
                 if (args.length == 2) {
                     Player pl = Bukkit.getPlayer(args[1]);
-                    float money = (float) m.getConfig().get("Players." + pl.getName());
+                    double money = (double) m.getConfig().get("Players." + pl.getName());
                 p.sendMessage(ChatColor.GREEN + "Il y a " + ChatColor.WHITE + money + ChatColor.GREEN + " dans le solde de " + ChatColor.WHITE + pl.getName());
             }else {
                 p.sendMessage(ChatColor.RED + "Pas assez d'arguments! Utilisez cette commande: /arconomy get <player>");
@@ -70,8 +70,8 @@ public class CommandArconomy implements CommandExecutor {
                 if (args.length == 3) {
 
                     Player pl = Bukkit.getPlayer(args[1]);
-                    float moneyToRemove = Float.parseFloat(args[2]);
-                    float money = (float) m.getConfig().get("Players." + pl.getName());
+                    double moneyToRemove = Double.parseDouble(args[2]);
+                    double money = (double) m.getConfig().get("Players." + pl.getName());
                     money -= moneyToRemove;
                     m.getConfig().set("Players." + pl.getName(), money);
                     m.saveConfig();
@@ -85,7 +85,7 @@ public class CommandArconomy implements CommandExecutor {
                 if (args.length == 3) {
 
                     Player pl = Bukkit.getPlayer(args[1]);
-                    float money = Float.parseFloat(args[2]);
+                    double money = Double.parseDouble(args[2]);
                     m.getConfig().set("Players." + pl.getName(), money);
                     m.saveConfig();
                     p.sendMessage(ChatColor.GREEN + "Correctement défini " + ChatColor.WHITE + money + ChatColor.GREEN + " pour le solde de " + ChatColor.WHITE + pl.getName());

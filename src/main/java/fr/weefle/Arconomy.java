@@ -26,35 +26,35 @@ public final class Arconomy extends JavaPlugin {
 
     }
 
-    public static float getMoney(Player p){
+    public static double getMoney(Player p){
 
         if(Arconomy.instance.getConfig().get("Players." + p.getName()) != null) {
-            return (float) Arconomy.instance.getConfig().get("Players." + p.getName());
+            return (double) Arconomy.instance.getConfig().get("Players." + p.getName());
         }
 
         return 0;
 
     }
 
-    public static void setMoney(Player p, float money){
+    public static void setMoney(Player p, double money){
 
         Arconomy.instance.getConfig().set("Players." + p.getName(), money);
         Arconomy.instance.saveConfig();
 
     }
 
-    public static void addMoney(Player p, float moneyToAdd){
+    public static void addMoney(Player p, double moneyToAdd){
 
-        float money = (float) Arconomy.instance.getConfig().get("Players." + p.getName());
+        double money = (double) Arconomy.instance.getConfig().get("Players." + p.getName());
         money += moneyToAdd;
         Arconomy.instance.getConfig().set("Players." + p.getName(), money);
         Arconomy.instance.saveConfig();
 
     }
 
-    public static void removeMoney(Player p, float moneyToRemove){
+    public static void removeMoney(Player p, double moneyToRemove){
 
-        float money = (float) Arconomy.instance.getConfig().get("Players." + p.getName());
+        double money = (double) Arconomy.instance.getConfig().get("Players." + p.getName());
         money -= moneyToRemove;
         Arconomy.instance.getConfig().set("Players." + p.getName(), money);
         Arconomy.instance.saveConfig();
