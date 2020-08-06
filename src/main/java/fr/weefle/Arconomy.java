@@ -14,7 +14,7 @@ public final class Arconomy extends JavaPlugin {
 
         instance = this;
         getCommand("arconomy").setExecutor(new CommandArconomy());
-        getServer().getPluginManager().registerEvents(new ArconomyListener(this), this);
+        getServer().getPluginManager().registerEvents(new ArconomyListener(), this);
         cc.createConfig();
 
     }
@@ -32,7 +32,7 @@ public final class Arconomy extends JavaPlugin {
             return (double) Arconomy.instance.getConfig().get("Players." + uuid);
         }
 
-        return 0;
+        return -1;
 
     }
 
