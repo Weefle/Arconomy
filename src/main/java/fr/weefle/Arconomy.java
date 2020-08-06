@@ -1,8 +1,8 @@
 package fr.weefle;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.UUID;
 
 public final class Arconomy extends JavaPlugin {
 
@@ -13,7 +13,7 @@ public final class Arconomy extends JavaPlugin {
     public void onEnable() {
 
         instance = this;
-        getCommand("arconomy").setExecutor(new CommandArconomy(this));
+        getCommand("arconomy").setExecutor(new CommandArconomy());
         getServer().getPluginManager().registerEvents(new ArconomyListener(this), this);
         cc.createConfig();
 
@@ -26,37 +26,37 @@ public final class Arconomy extends JavaPlugin {
 
     }
 
-    public static double getMoney(Player p){
+    public static double getMoney(UUID uuid){
 
-        if(Arconomy.instance.getConfig().get("Players." + p.getName()) != null) {
-            return (double) Arconomy.instance.getConfig().get("Players." + p.getName());
+        if(Arconomy.instance.getConfig().get("Players." + uuid) != null) {
+            return (double) Arconomy.instance.getConfig().get("Players." + uuid);
         }
 
         return 0;
 
     }
 
-    public static void setMoney(Player p, double money){
+    public static void setMoney(UUID uuid, double money){
 
-        Arconomy.instance.getConfig().set("Players." + p.getName(), money);
+        Arconomy.instance.getConfig().set("Players." + uuid, money);
         Arconomy.instance.saveConfig();
 
     }
 
-    public static void addMoney(Player p, double moneyToAdd){
+    public static void addMoney(UUID uuid, double moneyToAdd){
 
-        double money = (double) Arconomy.instance.getConfig().get("Players." + p.getName());
+        double money = (double) Arconomy.instance.getConfig().get("Players." + uuid);
         money += moneyToAdd;
-        Arconomy.instance.getConfig().set("Players." + p.getName(), money);
+        Arconomy.instance.getConfig().set("Players." + uuid, money);
         Arconomy.instance.saveConfig();
 
     }
 
-    public static void removeMoney(Player p, double moneyToRemove){
+    public static void removeMoney(UUID uuid, double moneyToRemove){
 
-        double money = (double) Arconomy.instance.getConfig().get("Players." + p.getName());
+        double money = (double) Arconomy.instance.getConfig().get("Players." + uuid);
         money -= moneyToRemove;
-        Arconomy.instance.getConfig().set("Players." + p.getName(), money);
+        Arconomy.instance.getConfig().set("Players." + uuid, money);
         Arconomy.instance.saveConfig();
 
     }

@@ -9,11 +9,6 @@ import org.bukkit.entity.Player;
 
 public class CommandArconomy implements CommandExecutor {
 
-    private Arconomy m;
-    public CommandArconomy(Arconomy m){
-        this.m = m;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -47,10 +42,7 @@ public class CommandArconomy implements CommandExecutor {
 
                     Player pl = Bukkit.getPlayer(args[1]);
                     double moneyToAdd = Double.parseDouble(args[2]);
-                    double money = (double) m.getConfig().get("Players." + pl.getName());
-                    money += moneyToAdd;
-                    m.getConfig().set("Players." + pl.getName(), money);
-                    m.saveConfig();
+                    Arconomy.addMoney(pl.getUniqueId(), moneyToAdd);
                     p.sendMessage(ChatColor.GREEN + "Correctement ajouté " + ChatColor.WHITE + moneyToAdd + ChatColor.GREEN + " au solde de " + ChatColor.WHITE + pl.getName());
                 }else {
                     p.sendMessage(ChatColor.RED + "Pas assez d'arguments! Utilisez cette commande: /arconomy add <player> <money>");
@@ -59,7 +51,7 @@ public class CommandArconomy implements CommandExecutor {
             }else if(args[0].equalsIgnoreCase("get")){
                 if (args.length == 2) {
                     Player pl = Bukkit.getPlayer(args[1]);
-                    double money = (double) m.getConfig().get("Players." + pl.getName());
+                    double money = Arconomy.getMoney(pl.getUniqueId());
                 p.sendMessage(ChatColor.GREEN + "Il y a " + ChatColor.WHITE + money + ChatColor.GREEN + " dans le solde de " + ChatColor.WHITE + pl.getName());
             }else {
                 p.sendMessage(ChatColor.RED + "Pas assez d'arguments! Utilisez cette commande: /arconomy get <player>");
@@ -71,10 +63,7 @@ public class CommandArconomy implements CommandExecutor {
 
                     Player pl = Bukkit.getPlayer(args[1]);
                     double moneyToRemove = Double.parseDouble(args[2]);
-                    double money = (double) m.getConfig().get("Players." + pl.getName());
-                    money -= moneyToRemove;
-                    m.getConfig().set("Players." + pl.getName(), money);
-                    m.saveConfig();
+                    Arconomy.removeMoney(pl.getUniqueId(), moneyToRemove);
                     p.sendMessage(ChatColor.GREEN + "Correctement retiré " + ChatColor.WHITE + moneyToRemove + ChatColor.GREEN + " du solde de " + ChatColor.WHITE + pl.getName());
                 }else {
                     p.sendMessage(ChatColor.RED + "Pas assez d'arguments! Utilisez cette commande: /arconomy remove <player> <money>");
@@ -86,8 +75,7 @@ public class CommandArconomy implements CommandExecutor {
 
                     Player pl = Bukkit.getPlayer(args[1]);
                     double money = Double.parseDouble(args[2]);
-                    m.getConfig().set("Players." + pl.getName(), money);
-                    m.saveConfig();
+                    Arconomy.setMoney(pl.getUniqueId(), money);
                     p.sendMessage(ChatColor.GREEN + "Correctement défini " + ChatColor.WHITE + money + ChatColor.GREEN + " pour le solde de " + ChatColor.WHITE + pl.getName());
                 }else {
                     p.sendMessage(ChatColor.RED + "Pas assez d'arguments! Utilisez cette commande: /arconomy set <player> <money>");
